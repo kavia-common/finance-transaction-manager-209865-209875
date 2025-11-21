@@ -31,6 +31,12 @@ The script will:
 - Ensure database and user exist
 - Apply schema.sql if not already applied (checks for users table)
 - Apply seed.sql (safe to re-run)
+- Write aligned env variables to db_visualizer/postgres.env:
+  - POSTGRES_URL="postgresql://localhost:5000/myapp"
+  - POSTGRES_USER="appuser"
+  - POSTGRES_PASSWORD="dbuser123"
+  - POSTGRES_DB="myapp"
+  - POSTGRES_PORT="5000"
 
 2) Connect to the database
 - psql -h localhost -U appuser -d myapp -p 5000
@@ -38,7 +44,11 @@ The script will:
   - cat db_connection.txt
   - psql postgresql://appuser:dbuser123@localhost:5000/myapp
 
-3) Launch the simple database viewer (optional)
+3) Backend DATABASE_URL
+- Point the backend .env to the same URL:
+  - DATABASE_URL=postgresql://appuser:dbuser123@localhost:5000/myapp
+
+4) Launch the simple database viewer (optional)
 - Prepare environment:
   - source db_visualizer/postgres.env
 - Install and run viewer (from db_visualizer directory):
